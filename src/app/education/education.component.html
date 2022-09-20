@@ -1,0 +1,43 @@
+
+<h1 id="education" class="flex-center">Education</h1>
+<h2 class="flex-center">Workshops</h2>
+<div  class="fila">
+        <div class="card" *ngFor="let data of dataset.workshops">
+            <a [href]="data.link"><img [src]="data.img" alt=""></a>
+            <h3 class="flex-center">{{data.name}}</h3>
+                <h4>{{data.emit}}</h4>
+            <div class="col-100 flex-center">
+                <h5>{{data.location}}</h5>
+                <h5>{{data.year}}</h5>
+            </div>
+        </div>
+</div>
+
+
+
+
+<h2 class="flex-center">Courses</h2>
+<div class="fila">
+        <div class="card" *ngFor="let data of dataset.courses">
+            <a [href]="data.link"><img [src]="data.img" alt=""></a>
+            <h3 class="flex-center">{{data.name}}</h3>
+                <h4>{{data.emit}}</h4>
+            <div class="col-100 flex-center">
+                <h5>{{data.location}}</h5>
+                <h5>{{data.year}}</h5>
+            </div>
+        </div>
+</div>
+
+<h2 class="flex-center">Projects</h2>
+<div class="fila flex-center" *ngFor="let data of dataset.projects">
+            <div class="card">
+            <a [href]="data.link"><img [src]="data.img" alt=""></a>
+            <h3 class="flex-center">{{data.name}}</h3>
+                <h4>{{data.emit}}</h4>
+            <div class="col-100 flex-center">
+                <h5>{{data.location}}</h5>
+                <h5>{{data.year}}</h5>
+            </div>
+        </div>
+</div>

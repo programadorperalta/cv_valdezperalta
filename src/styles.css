@@ -1,1 +1,752 @@
-/* You can add global styles to this file, and also import other style files */
+/*Fuentes*/
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*Para que tome todo hasta los bordes*/
+    font-family: 'Oswald', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit; /*Color heredado*/
+}
+
+/* Generales */
+
+html{
+   
+    font-size: 20px;
+}
+
+@media (max-width: 440px) { /*Para moviles*/
+    html{
+        font-size: 18px;
+    }
+}
+
+@keyframes zoom{
+    0%{
+        font-size: 1.3rem;
+    }
+
+}
+
+body{
+    font-family: "Avenir", sans-serif;
+    color: #67666e;
+}
+
+img{
+    max-width: 100%; /*Imagenes reponsive*/
+}
+
+p{
+    margin-bottom: 0.8rem;
+}
+
+/* Hero */
+
+.hero{
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    position: absolute; /**/
+    top: 0;
+    left: 0;
+    overflow: hidden; /*Si se desborda, que no se vea*/
+}
+
+@keyframes heroAnimation {
+
+    0%{
+        transform: scale(1.2); /*para que la haga un 20% mas grande*/
+        animation-timing-function: ease-in-out; 
+    }
+    50%{
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.hero div{
+    
+    width: 100%;
+    height: 100vh;
+    position: absolute; /**/
+    top: 0;
+    left: 0;
+    /*Propiedades de fondo de imagen*/
+    background-size: cover; /*para que ocupe todo el espacio disponible*/
+    background-position: center;
+    background-repeat: none;
+    animation: heroAnimation 5s infinite;
+    
+}
+
+
+.hero .hero-logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    animation: none;
+    opacity: 1; /*para romper la opacity de las imagenes*/
+    width: 30%;
+    height: auto; /*al ancho del dispositivo*/
+}
+
+.hero .hero-down{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    animation: none;
+    opacity: 1; /*para romper la opacity de las imagenes*/
+    width: 5%;
+    height: auto; /*al ancho del dispositivo*/
+}
+
+@media (max-width: 720px) {
+    .hero .hero-logo{
+        width: 60%;
+    }
+    .hero .hero-down{
+        width: 15%;
+    }
+}
+
+@media (max-width: 440px) {
+    .hero .hero-logo{
+        width: 80%;
+    }
+
+    .hero .hero-down{
+        width: 20%;
+    }
+}
+
+/* Header */
+
+header {
+    background-color: white;
+    box-shadow: 1.5px 1.5px 4px #b3b3b3;
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    justify-content:flex-end; /*ambos extremos*/
+    align-items: center;
+    padding: 0 1rem; /*Proporcional a los textos que tengamos*/
+
+}
+
+header.transparente{
+    background-color: transparent;
+    box-shadow: none;
+}
+
+header img{
+    height: 60px;
+    width: auto; /*se va a ver bien porque es svg*/
+}
+
+header nav a{
+    color: black;
+    font-weight: normal;
+    margin-left: 1em; /**/
+    transition: 300ms;
+
+}
+
+header nav a:hover{
+    color: black;
+    font-weight: normal;
+    margin-left: 1em; /**/
+    transition: 300ms;
+    animation: zoom 18s infinite;
+}
+
+
+header.transparente nav a{
+    color: black;
+    font-weight: normal;
+    margin-left: 1em; /**/
+    transition: 300ms;
+}
+
+header.transparente nav a img{
+    width: 35px;
+    height: 24px;
+}
+
+
+
+header nav a.activo,
+header nav a:hover{
+    color:green;
+    font-weight: normal;
+}
+
+header.transparente nav a.activo,
+header nav a:hover{
+    color: white;
+}
+
+/* Boton burguer */
+#burger{
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    display: none; /*para que desaparezca*/
+}
+
+#burger .barra{
+    width: 30px;
+    height: 2px;
+    margin: 6px;
+    background-color: #a97c50;
+    transition: 400ms all ease-in-out;
+}
+
+#burger.abierto .barra{
+    background-color: white;
+}
+
+#burger.abierto .barra.superior{
+    transform: translateY(8px) rotateZ(45deg); /*la convierte en una barra diagonal*/
+}
+
+#burger.abierto .barra.media{
+    width: 0;
+}
+
+#burger.abierto .barra.inferior{
+    transform: translateY(-8px) rotateZ(-45deg);
+}
+
+@media (max-width: 620px) {
+    #burger {
+        display: block;
+    }
+
+    header {justify-content: flex-end;}
+
+    header nav{
+        display: none;
+    }
+}
+
+
+/* Menu lateral */
+.menu{
+    width: 360px;
+    height: 100vh;
+    background-color: #424242;
+    position: fixed;
+    top:0;
+    left: -360px;
+    padding-top: 40px;
+    transition: all 700ms ease-in-out;
+}
+
+
+div video{
+    width: 100%;
+    height: 100vh;
+    position: absolute; /**/
+    top: 0;
+    left: 0;
+    /*Propiedades de fondo de imagen*/
+    background-size: cover; /*para que ocupe todo el espacio disponible*/
+    background-position: center;
+    background-repeat: none;
+}
+
+
+.menu.abierto{
+    left: 0;
+}
+
+.menu nav:hover{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu nav a{
+    padding: 0.6rem 0;
+    color: rgba(255, 255, 255, 0.603);
+    transition: 300ms all ease-in-out;
+}
+
+.menu nav a:hover{
+    color: green;
+}
+
+/* copyright */
+
+.menu .copyright{
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.9rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+
+/* Layout */
+.primera{
+    margin-top: 100vh;/*para que baje abajo de hero y se vea el scroll*/
+}
+
+#pr,
+#legal,
+#cookies {
+    display: block;
+    margin-top: -90px; /*subimos con el margin*/
+    padding-bottom: 90px; /*bajamos con el padding*/
+}
+
+
+.fila {
+    display: flex; /*CONVIERTE EN INLINE*/
+    padding: 1.5rem 1rem; /*para darle espaciado a los elementos*/
+    justify-content:space-between;
+}
+
+.fila.contacto{
+    margin-top: 80px; /*lo que tiene la barra*/
+}
+
+.col-100{
+    width: 100%;
+    flex-direction: column;
+    justify-content:space-around; 
+    
+}
+
+.col-75{
+    width: 75%;
+    padding: 0.5rem 1rem; /*SUPERIOR-INFERIOR | DERECHA-IZQUIERDA*/
+}
+
+.col-66{
+    width: 66.66666%;
+    padding: 0.5rem 1rem; /*SUPERIOR-INFERIOR | DERECHA-IZQUIERDA*/
+   
+}
+
+.col-66 img{
+    margin-top: -45px;
+}
+
+.col-50{
+    width: 50%;
+    padding: 0.5rem 1rem; /*SUPERIOR-INFERIOR | DERECHA-IZQUIERDA*/
+    margin-top: -100px;
+}
+
+.col-50 img{
+    margin-top: -3px;
+}
+
+.col-50 video{
+    width: 100%;
+    margin-top: -150px;
+    position:relative;
+}
+.col-75 video{
+    width: 100%;
+    margin-top: -150px;
+    position:relative;
+    padding:0%
+
+}
+
+
+.col-33{
+    width: 33.33333%;
+    padding: 0.5rem 1rem; /*SUPERIOR-INFERIOR | DERECHA-IZQUIERDA*/
+
+}
+
+.col-25{
+    width: 25%;
+    padding: 0.5rem 1rem; /*SUPERIOR-INFERIOR | DERECHA-IZQUIERDA*/
+    
+}
+
+@media (max-width: 720px){
+
+    .fila{
+        flex-direction: column;
+        padding: 1rem 0.5rem;
+    }
+
+    .col-75,
+    .col-66,
+    .col-50,
+    .col-33,
+    .col-25
+    {
+        width: 100%;
+    }
+}
+
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.flex-around{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flex-between{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Espaciados y margenes  */
+
+.m-t{
+    margin-top: 1rem;
+}
+
+.m-b{
+    margin-bottom: 1rem;
+}
+
+.m-l{
+    margin-left: 1rem;
+}
+
+.m-r{
+    margin-right: 1rem;
+}
+
+
+.m-t-small{
+    margin-top: 0.5rem;
+}
+
+.m-b-small{
+    margin-bottom: 0.5rem;
+}
+
+.m-l-small{
+    margin-left: 0.5rem;
+}
+
+.m-r-small{
+    margin-right: 0.5rem;
+}
+
+/* Parallax */
+
+
+.fila.parallax div p{
+    font-size: 1.5rem;
+    color: green;
+    text-align: center;
+}
+
+/* Caja navegacion  */
+
+.caja-nav img{
+    width: 20%;
+    margin-bottom: 1em;/*margen inferior*/
+}
+
+.caja-nav a{
+    border: 1px solid #a97c50;
+    background-color: white;
+    color: green;
+    font-size: 1rem;
+    font-weight: normal;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: all ease-in-out 400ms;
+}
+
+.caja-nav a:hover{
+    background-color: green;
+    color: white;
+}
+
+/* Formulario contacto */
+
+form.contacto{
+    width: 50%;
+}
+
+@media (max-width: 720px) {
+    form.contacto{
+        width: 75%;
+    }
+}
+
+@media (max-width: 440px) {
+    form.contacto{
+        width: 100%;
+    }
+}
+
+form.contacto .fila{
+    padding: 0.8rem;
+}
+
+input{
+    border: none;
+    border-bottom: 1.5px solid green;
+    font-size: 1rem;
+    padding: 0.5em 1em;
+    width: 100%;
+}
+
+input:focus{ /*Se posiciona con el cursor*/
+    outline: none;
+    border-bottom: 1.5px solid green;
+}
+
+body{
+    background-color: grey;
+}
+
+button{
+    border: none;
+    background-color: green;
+    color: white;
+    font-size: 1rem;
+    font-weight: normal;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: all ease-in-out 400ms;
+}
+
+button:hover{
+    background-color: rgba(0, 128, 0, 0.534);
+    color: white;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+/* Footer */
+
+.presentation{
+    background-color: black;
+}
+
+.presentation p{
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.presentation p:first-child{
+    color: green;
+    font-weight: bold;
+}
+
+.presentation img.rrss{
+    height: 48px;
+}
+
+.presentation a{
+    font-size: 0.8rem;
+    color: green;
+    transition: 400ms ease-in-out all;
+}
+
+.presentation a:hover{
+    font-size: 0.8rem;
+    color: #704a24;
+}
+
+.presentation .copyright{
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Card */
+
+.fila.grid{
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,360px); /*cada columna se adapte al espacio disponible*/
+    grid-gap: 1.5rem;/*huecos entre las rejillas*/
+    justify-content: center;
+}
+
+
+
+.card{
+    width:300px;
+    height: 450px;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 6px grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.sw img{
+    width:90px;
+}
+
+.idioma{
+    width:100px;
+
+}
+
+.card .prog{
+    width:300px;
+    height:100px;
+}
+
+.card h3{
+    text-align: center;
+    color: white;
+}
+
+.card img{
+    height: 150px;
+}
+
+.plen img{
+    width:100px;
+}
+
+.card img:hover{
+    height: 151px;
+    transition: 400ms ease-in-out all;
+}
+
+.card .footer-card{
+    padding: 0.8rem;
+    width: 100%;
+    height: 174px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;/*alineados al principio*/
+}
+
+.card .footer-card p{
+    margin-bottom: 0.5rem;
+}
+
+.card .footer-card p:first-child{
+    font-weight: bold;
+}
+
+.card .footer-card a{
+    background-color: #a97c50;
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 0.3rem;
+    padding: 0.5em 1em;
+    align-self: center;
+    transition: 400ms ease-in-out all;
+}
+
+.card .footer-card a:hover{
+    background-color: #a97d5083;
+}
+
+
+/* Ficha propiedad */
+
+
+
+.propiedad div:first-child{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.propiedad div:first-child h1{
+    font-size: 1.4rem;
+    color: #a97c50;
+}
+
+.propiedad div:first-child p img{
+    width: 28px;
+    height: 28px;
+}
+
+
+footer{
+    background-color: black;
+}
+
+footer p{
+    color: rgba(255, 255, 255, 0.8);
+}
+
+footer p:first-child{
+    color: green;
+    font-weight: bold;
+}
+
+footer img.rrss{
+    height: 48px;
+}
+
+footer a{
+    font-size: 0.8rem;
+    color: green;
+    transition: 400ms ease-in-out all;
+}
+
+footer a:hover{
+    font-size: 0.8rem;
+    color: #704a24;
+}
+
+footer .copyright{
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    text-align: center;
+}
